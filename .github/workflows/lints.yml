@@ -1,0 +1,23 @@
+name: Lints
+
+on: [push]
+
+jobs:
+  check:
+    name: Foundry project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: onbjerg/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run lints
+        run: npx prettier --write src/**/*.sol && npx prettier --write src/*.sol
