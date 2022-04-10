@@ -1,8 +1,8 @@
-<img align="right" width="150" height="150" top="100" src="./assets/readme.jpg">
+<img align="right" width="160" height="160" top="100" src="./assets/readme.jpeg">
 
-# femplate • [![tests](https://github.com/soliditylabs/forge-erc20-template/actions/workflows/tests.yml/badge.svg)](https://github.com/soliditylabs/forge-erc20-template/actions/workflows/tests.yml) [![lints](https://github.com/soliditylabs/forge-erc20-template/actions/workflows/lints.yml/badge.svg)](https://github.com/soliditylabs/forge-erc20-template/actions/workflows/lints.yml) ![GitHub](https://img.shields.io/github/license/soliditylabs/forge-erc20-template) ![GitHub package.json version](https://img.shields.io/github/package-json/v/soliditylabs/forge-erc20-template)
+# forge-erc20 • [![tests](https://github.com/soliditylabs/forge-erc20-template/actions/workflows/tests.yml/badge.svg)](https://github.com/soliditylabs/forge-erc20-template/actions/workflows/tests.yml) [![lints](https://github.com/soliditylabs/forge-erc20-template/actions/workflows/lints.yml/badge.svg)](https://github.com/soliditylabs/forge-erc20-template/actions/workflows/lints.yml) ![GitHub](https://img.shields.io/github/license/soliditylabs/forge-erc20-template) ![GitHub package.json version](https://img.shields.io/github/package-json/v/soliditylabs/forge-erc20-template)
 
-Template for Forge based [femplate](https://github.com/abigger87/femplate) and [forge-template](https://github.com/FrankieIsLost/forge-template) with ERC-20 example tests.
+Template for Forge based on [femplate](https://github.com/abigger87/femplate) and [forge-template](https://github.com/FrankieIsLost/forge-template) with ERC-20 example tests.
 
 ## Getting Started
 
@@ -31,37 +31,29 @@ src
 
 ## Development
 
-**Setup**
-
-```bash
-make
-# OR #
-make setup
-```
-
 **Building**
 
 ```bash
-make build
+forge build
 ```
 
 **Testing**
 
 ```bash
-make test
+forge test -vvvvv
 ```
 
 **Deployment & Verification**
 
 Copy the .env.example file to .env and update the values.
 
-To deploy the ERC-20:
+To deploy the ERC-20 to Rinkeby:
 
 ```bash
 ./scripts/deploy-to-rinkeby.sh
 ```
 
-To verify the ERC-20:
+To verify the ERC-20 on Rinkeby:
 
 ```bash
 ./scripts/deploy-to-rinkeby.sh
@@ -109,12 +101,10 @@ For a full list of configuration options, see the Foundry [configuration documen
 
 ## Acknowledgements
 
-- [femplate](https://github.com/soliditylabs/forge-erc20-template)
+- [femplate](https://github.com/abigger87/femplate) as main reference
 - [foundry](https://github.com/gakonst/foundry)
-- [solmate](https://github.com/Rari-Capital/solmate)
+- [Openzeppelin](https://github.com/Openzeppelin/openzeppelin-contracts)
 - [forge-std](https://github.com/brockelmore/forge-std)
-- [clones-with-immutable-args](https://github.com/wighawag/clones-with-immutable-args).
-- [foundry-toolchain](https://github.com/onbjerg/foundry-toolchain) by [onbjerg](https://github.com/onbjerg).
 - [forge-template](https://github.com/FrankieIsLost/forge-template) by [FrankieIsLost](https://github.com/FrankieIsLost).
 - [Georgios Konstantopoulos](https://github.com/gakonst) for [forge-template](https://github.com/gakonst/forge-template) resource.
 

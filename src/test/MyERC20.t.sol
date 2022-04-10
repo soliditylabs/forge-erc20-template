@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0;
 
 import {Vm} from "forge-std/Vm.sol";
-import {console} from "forge-std/Console.sol";
+import {console} from "forge-std/console.sol";
 
 // custom DSTest with public functions instead of ds-test
 import {DSTest} from "./utils/test.sol";
