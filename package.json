@@ -1,0 +1,38 @@
+{
+  "name": "forge-erc20-template",
+  "version": "1.0.0",
+  "description": "Forge Template for ERC-20 using Openzeppelin Contracts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "setup": "make clean && make build",
+    "sync": "make update",
+    "test": "make test",
+    "snapshot": "make snapshot",
+    "lint": "make lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soliditylabs/forge-erc20-template.git"
+  },
+  "keywords": [
+    "forge",
+    "template",
+    "erc20",
+    "openzeppelin",
+    "Solidity"
+  ],
+  "author": "Markus Waas (mail@markuswaas.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/soliditylabs/forge-erc20-template/issues"
+  },
+  "homepage": "https://github.com/soliditylabs/forge-erc20-template#readme",
+  "devDependencies": {
+    "prettier": "^2.6.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "solhint": "^3.3.7",
+    "solhint-plugin-prettier": "^0.0.5"
+  }
+}
