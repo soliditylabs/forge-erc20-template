@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0;
+pragma solidity 0.8.13;
 
 import {Vm} from "forge-std/Vm.sol";
 import {console} from "forge-std/console.sol";
+import {stdStorage, StdStorage} from "forge-std/stdlib.sol";
 
 // custom DSTest with public functions instead of ds-test
 import {DSTest} from "./utils/test.sol";
@@ -11,6 +12,7 @@ import {MyERC20} from "../MyERC20.sol";
 
 contract BaseSetup is MyERC20, DSTest {
     Vm internal immutable vm = Vm(HEVM_ADDRESS);
+    StdStorage internal stdstore;
 
     Utils internal utils;
     address payable[] internal users;
@@ -49,12 +51,24 @@ contract WhenAliceHasInsufficientFunds is WhenTransferringTokens {
 }
 
 contract WhenAliceHasSufficientFunds is WhenTransferringTokens {
+    using stdStorage for StdStorage;
     uint256 internal mintAmount = maxTransferAmount;
 
     function setUp() public override {
         WhenTransferringTokens.setUp();
         console.log("When Alice has sufficient funds");
         _mint(alice, mintAmount);
+    }
+
+    // example how to use https://github.com/brockelmore/forge-std stdStorage
+    function testFindMapping() public {
+        uint256 slot = stdstore
+            .target(address(this))
+            .sig(this.balanceOf.selector)
+            .with_key(alice)
+            .find();
+        bytes32 data = vm.load(address(this), bytes32(slot));
+        assertEq(uint256(data), mintAmount);
     }
 }
 
@@ -110,6 +124,22 @@ contract TransferSuccess is WhenAliceHasSufficientFunds {
 
     function testTransferOneToken() public {
         itTransfersAmountCorrectly(alice, bob, vm, this, 1);
+    }
+
+    function testTransferWithMockedCall() public {
+        vm.prank(alice);
+        vm.mockCall(
+            address(this),
+            abi.encodeWithSelector(
+                this.transfer.selector,
+                bob,
+                maxTransferAmount
+            ),
+            abi.encode(false)
+        );
+        bool success = this.transfer(bob, maxTransferAmount);
+        assertTrue(!success);
+        vm.clearMockedCalls();
     }
 }
 
